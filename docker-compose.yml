@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+
+  apache-php:
+    container_name: apache-php
+    env_file:
+      - .env
+    image: romeoz/docker-apache-php:7.2
+    ports: 
+      - 80:80
+    volumes:
+      - ./www/:/var/www/app
+      - "./conf/vhost.conf:/etc/apache2/sites-enabled/app.conf"
+
+  mysql:
+    image: mysql:5.7
+    restart: on-failure
+    container_name: mysql
+    env_file:
+      - .env
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    volumes:
+      - "./database-entrypoint/app.sql:/docker-entrypoint-initdb.d/app.sql"
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    ports:
+      - ${PMA_PORT}:80
+    links:
+      - "mysql:db"
+    environment:
+      - "PMA_HOST:db"
+
