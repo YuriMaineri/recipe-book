@@ -3,6 +3,7 @@
 # Como rodar a aplicação
 
 ## Instalar o docker na máquina
+
 - Como instalar o docker no [Linux](https://runnable.com/docker/install-docker-on-linux)
 - Como instalar o docker no [Windows](https://docs.docker.com/get-docker/)
 
@@ -10,6 +11,7 @@
 
 - $ docker-compose up -d
 > Isso vai subir o **Apache** na porta 80, o **MySQL** na porta 3306 e o **phpMyAdmin** na porta 8080
+
 > Certifique-se de ter essas portas liberadas ou basta mapear para outra porta no docker-compose.yml
 
 ### Resultado do comando
@@ -21,4 +23,3 @@
 ```
 #### Instalação dos pacotes via composer para rodar o Laravel
 - $ docker exec -t apache-php ./composer.phar install
-
